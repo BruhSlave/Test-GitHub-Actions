@@ -26,4 +26,4 @@ jobs:
           pip install flake8==6.0.0 flake8-isort==6.0.0
 
       - name: Test with flake8
-        run: python -m ./backend/
+        run: python -m backend
