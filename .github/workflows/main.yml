@@ -32,7 +32,7 @@ jobs:
           cd backend/
           python manage.py test
 
-  build_push_docker_hub:
+  build_backend_push_docker_hub:
     runs-on: ubuntu-latest
     needs: backend_tests
 
@@ -96,7 +96,7 @@ jobs:
 
   send_message:
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: [build_backend_push_docker_hub, build_frontend_push_dockerhub]
     steps:
       - name: Send message
         uses: appleboy/telegram-action@master
