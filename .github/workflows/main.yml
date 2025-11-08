@@ -121,14 +121,16 @@ jobs:
     needs: security-snyk
 
     steps:
-      - name: Checkout thr repo
-        uses: actions/checkout@v3
-      - name: Install dependencies
-        run: |
-          apt install trivy
-      - name: Scan filesystem with trivy
-        run: |
-          trivy fs .
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy filesystem scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          scan-ref: "."
+          format: "table"
+          exit-code: 0
 
   send_message:
     runs-on: ubuntu-latest
