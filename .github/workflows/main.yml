@@ -110,6 +110,11 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g snyk
+      - name: Ignore issue
+        run: |
+          snyk ignore --id=1df0d47e-3911-40ef-a898-a84781c84781c29a6f --reason="Test repo" --expiry=2025-01-01
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
       - name: Run security check
         run: snyk code test
         env:
