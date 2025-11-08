@@ -1,0 +1,7 @@
+# .snyk
+version: v1.19.0
+ignore:
+  '1df0d47e-3911-40ef-a898-a84781c29a6f':
+    - '*':
+        reason: 'Test repository, ignoring hardcoded secrets'
+        created: 2024-01-01T00:00:00.000Z
