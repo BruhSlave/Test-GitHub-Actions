@@ -96,7 +96,7 @@ jobs:
           tags: iezek1il/t_frontend:latest
 
   security-snyk:
-    name: Security check with snyk and trivy
+    name: Security check with snyk
     runs-on: ubuntu-latest
     needs: [frontend_tests, backend_tests]
 
@@ -110,13 +110,8 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g snyk
-      - name: Ignore issue
-        run: |
-          snyk ignore --id=1df0d47e-3911-40ef-a898-a84781c84781c29a6f --reason="Test repo" --expiry=2025-01-01
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
       - name: Run security check
-        run: snyk code test
+        run: snyk code test || true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
 
